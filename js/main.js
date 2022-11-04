@@ -9,33 +9,31 @@ const imgsArray = [
   "imgs/04.webp",
   "imgs/05.webp",
 ];
+console.log(imgsArray);
 let imgEl;
 
 let imgIndex = 0;
 
-for (let i = 0; i < imgsArray.length - 1; i++) {
+for (let i = 0; i <= imgsArray.length - 1; i++) {
   imgEl = document.createElement("img");
-  imgEl.src = imgsArray[imgIndex];
+  imgEl.src = imgsArray[i];
   if (i === 0) {
     imgEl.classList.add("d-block");
   }
   imgsContainerEl.append(imgEl);
-  imgIndex++;
 }
 
-imgIndex = 0;
 btnNext.addEventListener("click", function () {
   const oldImgEl = document.querySelector(
     `.imgs-container :nth-child(${imgIndex + 1})`
   );
   oldImgEl.classList.remove("d-block");
   imgIndex++;
-
-  const lastIndex = imgsArray.length - 1;
-
-  if (imgIndex > lastIndex) {
+  if (imgIndex > imgsArray.length - 1) {
     imgIndex = 0;
   }
-  imgEl.src = imgsArray[imgIndex];
-  imgEl.classList.add("d-block");
+  const newImg = document.querySelector(
+    `.imgs-container :nth-child(${imgIndex + 1})`
+  );
+  newImg.classList.add("d-block");
 });
