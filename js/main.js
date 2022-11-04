@@ -12,8 +12,6 @@ const imgsArray = [
 console.log(imgsArray);
 let imgEl;
 
-let imgIndex = 0;
-
 for (let i = 0; i <= imgsArray.length - 1; i++) {
   imgEl = document.createElement("img");
   imgEl.src = imgsArray[i];
@@ -22,7 +20,7 @@ for (let i = 0; i <= imgsArray.length - 1; i++) {
   }
   imgsContainerEl.append(imgEl);
 }
-
+let imgIndex = 0;
 btnNext.addEventListener("click", function () {
   const oldImgEl = document.querySelector(
     `.imgs-container :nth-child(${imgIndex + 1})`
@@ -36,4 +34,19 @@ btnNext.addEventListener("click", function () {
     `.imgs-container :nth-child(${imgIndex + 1})`
   );
   newImg.classList.add("d-block");
+
+  btnPrev.addEventListener("click", function () {
+    const oldImgEl = document.querySelector(
+      `.imgs-container :nth-child(${imgIndex + 1})`
+    );
+    oldImgEl.classList.remove("d-block");
+    imgIndex--;
+    if (imgIndex < 0) {
+      imgIndex = 0;
+    }
+    const newImg = document.querySelector(
+      `.imgs-container :nth-child(${imgIndex + 1})`
+    );
+    newImg.classList.add("d-block");
+  });
 });
